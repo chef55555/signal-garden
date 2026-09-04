@@ -25,6 +25,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - name: Normalize project-site asset paths
+        run: |
+          mv dist/client/signal-garden/_next dist/client/_next
+          rmdir dist/client/signal-garden
       - run: touch dist/client/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
